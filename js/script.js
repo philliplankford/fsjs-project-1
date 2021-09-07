@@ -3,43 +3,41 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-/*** 
+/***
   * array to store quote information objects
 ***/
 
 const quotes = [
   {
-    quote: "JASON! JASON! JAAAAASON!!",
-    source: "Ethan",
-    citation: "Heavy Rain",
-    year: 2010,
-    tag: "humor",
+    quote: "An eye for an eye ends up making the whole world blind.",
+    source: "Ghandi",
+    tag: "philosophy"
   },
   {
     quote: "What, you egg?",
     source: "Macbeth's Henchman",
     citation: "Macbeth",
     year: 1606,
-    tag: "humor",
+    tag: "humor"
   },
   {
     quote: "Every problem you have today will be a problem tomorrow, and if it's a problem for tomorrow you don't have to worry about it today.",
     source: "Asmongold",
-    tag: "humor",
+    tag: "humor"
   },
   {
     quote: "If you knew success was a certainty, what would you attempt to do?",
     source: "Mr. Vance Hinds",
-    tag: "inspiration",
+    tag: "inspiration"
   },
   {
-    quote: "And the dirt that they threw on my name turned to soil and I grew up out it.",
-    source: "Drake",
-    citation: "Fair Trade",
-    year: 2021,
-    tag: "rap",
+    quote: "Wait...this isn't my world. DISSAPOINTED!!",
+    source: "Hercules",
+    citation: "Hercules: The Legendary Journeys",
+    year: 1995,
+    tag: "humor"
   }
-]
+];
 
 /***
  * get a random number
@@ -64,7 +62,7 @@ function getRandomQuote() {
 ***/
 
 function randomColor() {
-  document.getElementById('body').style.backgroundColor = `rgb(${getRandomNumber(0,255)},${getRandomNumber(0,255)},${getRandomNumber(0,255)})`;
+  document.getElementById("body").style.backgroundColor = `rgb(${getRandomNumber(0,255)},${getRandomNumber(0,255)},${getRandomNumber(0,255)})`;
 }
 
 /***
@@ -75,11 +73,10 @@ let lastQuote = getRandomQuote(); // store the last quote displayed
 
 function printQuote() {
   let quote = getRandomQuote();
-  if (quote === lastQuote) { // check if the generated quote is the same as the last
-    quote = getRandomQuote(); // if not generate a new one
-  } else {
-    lastQuote = quote; // otherwise set the new last used quote
+  while (quote === lastQuote) {
+    quote = getRandomQuote(); 
   }
+  lastQuote = quote; // set the last quote to the new quote
   let quoteString = `
   <p class="quote"> ${quote.quote} </p>
   <p class="source"> ${quote.source}`;
@@ -94,15 +91,16 @@ function printQuote() {
   }
   quoteString += "</p>";
   randomColor(); // make the background of the body a random color
-  document.getElementById('quote-box').innerHTML = quoteString; // insert the quote
+  document.getElementById('quote-box').innerHTML = quoteString; // insert the quote into DOM
   return quoteString;
 }
 
 /***
- * generate new quote after 20 seconds
+ * change placeholder quote & generate new quote every 20 seconds
 ***/
 
-setInterval(printQuote, 20000);
+printQuote();
+// setInterval(printQuote, 20000);
 
 /***
  * click event listener for the print quote button
