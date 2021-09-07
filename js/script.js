@@ -44,7 +44,7 @@ const quotes = [
 ***/
 
 function getRandomNumber(min, max) {
-  let num = Math.floor( Math.random() * max) + min;
+  const num = Math.floor( Math.random() * max) + min;
   return num;
 }
 
@@ -53,7 +53,7 @@ function getRandomNumber(min, max) {
 ***/
 
 function getRandomQuote() {
-  let random = getRandomNumber(0, quotes.length);
+  const random = getRandomNumber(0, quotes.length);
   return quotes[random];
 }
 
